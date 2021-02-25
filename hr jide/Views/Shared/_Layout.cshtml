@@ -1,0 +1,174 @@
+﻿@inject Microsoft.AspNetCore.Identity.SignInManager<Microsoft.AspNetCore.Identity.IdentityUser> SignInManager;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - hr_jide</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3" style="        background-color: #7952b3 !important">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index" style="color: white !important;">HRM PORTAL</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse ">
+                    <partial name="_LoginPartial" />
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index" style="color: white !important;">Home</a>
+                        </li>
+
+                        @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item  dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white;">
+                                    User Management
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="ListUsers">Users</a>
+
+                                    <a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="ListRoles">Roles</a>
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white;">
+                                    Jobs
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" asp-area="" asp-controller="JobTitles" asp-action="index">Job Titles</a>
+
+                                    <a class="dropdown-item" asp-area="" asp-controller="PayGrades" asp-action="index">Pay Grade</a>
+
+                                    <a class="dropdown-item" asp-area="" asp-controller="EmployementStatus" asp-action="index">Employment Status</a>
+
+                                    <a class="dropdown-item" asp-area="" asp-controller="JobCategories" asp-action="index">Job categories</a>
+                                </div>
+                            </li>
+
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white;">
+                                    Organization
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" asp-area="" asp-controller="CompanyInformations" asp-action="index">Company Information</a>
+
+                                    <a class="dropdown-item" asp-area="" asp-controller="CompanyBranches" asp-action="index">Company Branch</a>
+
+
+                                </div>
+                            </li>
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white;">
+                                    Qualifications
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" asp-area="" asp-controller="Skills" asp-action="index">Skills</a>
+
+                                    <a class="dropdown-item" asp-area="" asp-controller="Educations" asp-action="index">Education</a>
+
+                                    <a class="dropdown-item" asp-area="" asp-controller="Licenses" asp-action="index">Licences</a>
+
+                                    <a class="dropdown-item" asp-area="" asp-controller="Languages" asp-action="index">Languages</a>
+
+                                    <a class="dropdown-item" asp-area="" asp-controller="Memberships" asp-action="index">Memberships</a>
+
+                                </div>
+                            </li>
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white;">
+                                    Others
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" asp-area="" asp-controller="Relationships" asp-action="index">Relationship</a>
+
+                                    <a class="dropdown-item" asp-area="" asp-controller="Currencies2" asp-action="index">Currency</a>
+
+
+                                    <a class="dropdown-item" asp-area="" asp-controller="Countries" asp-action="index">Country</a>
+
+
+                                    <a class="dropdown-item" asp-area="" asp-controller="DocumentTypes" asp-action="index">Document</a>
+
+
+                                    <a class="dropdown-item" asp-area="" asp-controller="ReportingMethods" asp-action="index">Reporting method</a>
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+ 
+        <main role="main" class="pb-3">
+            <div class="row">
+                <div class="col-2">
+                    <div class="list-group">
+                        @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+                        {
+                            <a asp-controller="employees" asp-action="all" class="list-group-item list-group-item-action">Employee </a>
+                            <a asp-controller="employeecontactdetails" asp-action="all" class="list-group-item list-group-item-action">Employee Contact details</a>
+                            <a asp-controller="employeedependants" asp-action="all" class="list-group-item list-group-item-action">Employee Dependant</a>
+                            <a asp-controller="employeeeducations" asp-action="all" class="list-group-item list-group-item-action">Employee Education</a>
+                            <a asp-controller="employeeemergencycontacts" asp-action="all" class="list-group-item list-group-item-action">Employee Emergency Contact</a>
+                            <a asp-controller="employeeimmigrations" asp-action="all" class="list-group-item list-group-item-action">Employee Immigration</a>
+                            <a asp-controller="employeejobs" asp-action="all" class="list-group-item list-group-item-action">Employee Job</a>
+                            <a asp-controller="employeelanguages" asp-action="all" class="list-group-item list-group-item-action">Employee Language</a>
+                            <a asp-controller="employeelicenses" asp-action="all" class="list-group-item list-group-item-action">Employee License</a>
+                            <a asp-controller="employeememberships" asp-action="all" class="list-group-item list-group-item-action">Employee Membership</a>
+                            <a asp-controller="employeesalaries1" asp-action="all" class="list-group-item list-group-item-action">Employee Salary</a>
+                            <a asp-controller="employeeskills" asp-action="all" class="list-group-item list-group-item-action">Employee Skill</a>
+                            <a asp-controller="employeesubordinates" asp-action="all" class="list-group-item list-group-item-action">Employee Subordinate</a>
+                            <a asp-controller="employeesupervisors" asp-action="all" class="list-group-item list-group-item-action">Employee Supervisor</a>
+                            <a asp-controller="employeeworkexperiences" asp-action="all" class="list-group-item list-group-item-action">Employee Work Experiences</a>
+                        }
+                        else
+                        {
+                            <a asp-controller="employees" asp-action="index" class="list-group-item list-group-item-action">Employee </a>
+                            <a asp-controller="employeecontactdetails" asp-action="index" class="list-group-item list-group-item-action">Employee Contact details</a>
+                            <a asp-controller="employeedependants" asp-action="index" class="list-group-item list-group-item-action">Employee Dependant</a>
+                            <a asp-controller="employeeeducations" asp-action="index" class="list-group-item list-group-item-action">Employee Education</a>
+                            <a asp-controller="employeeemergencycontacts" asp-action="index" class="list-group-item list-group-item-action">Employee Emergency Contact</a>
+                            <a asp-controller="employeeimmigrations" asp-action="index" class="list-group-item list-group-item-action">Employee Immigration</a>
+                            <a asp-controller="employeejobs" asp-action="index" class="list-group-item list-group-item-action">Employee Job</a>
+                            <a asp-controller="employeelanguages" asp-action="index" class="list-group-item list-group-item-action">Employee Language</a>
+                            <a asp-controller="employeelicenses" asp-action="index" class="list-group-item list-group-item-action">Employee License</a>
+                            <a asp-controller="employeememberships" asp-action="index" class="list-group-item list-group-item-action">Employee Membership</a>
+                            <a asp-controller="employeesalaries1" asp-action="index" class="list-group-item list-group-item-action">Employee Salary</a>
+                            <a asp-controller="employeeskills" asp-action="index" class="list-group-item list-group-item-action">Employee Skill</a>
+                            <a asp-controller="employeesubordinates" asp-action="index" class="list-group-item list-group-item-action">Employee Subordinate</a>
+                            <a asp-controller="employeesupervisors" asp-action="index" class="list-group-item list-group-item-action">Employee Supervisor</a>
+                            <a asp-controller="employeeworkexperiences" asp-action="index" class="list-group-item list-group-item-action">Employee Work Experiences</a>
+                        }
+                    </div>
+                </div>
+                <div class="col-10">
+                    @RenderBody()
+                </div>
+            </div>
+
+        </main>
+ 
+
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2020 - hr_jide - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

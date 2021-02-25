@@ -1,0 +1,77 @@
+﻿@model IEnumerable<hr_jide.Models.EmployeeEducation>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+   
+</p>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.EmployeeId)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.Level)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.Institute)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.Major)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.Year)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.GPA)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+
+
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EmployeeId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Level)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Institute)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Major)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Year)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GPA)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+
+                <td>
+                    <a class="btn btn-primary btn-group-sm" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a class="btn btn-success btn-group-sm" asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a class="btn btn-danger btn-group-sm" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

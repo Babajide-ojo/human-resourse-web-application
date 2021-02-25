@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Microsoft.AspNetCore.Identity.IdentityUser>
+
+@{
+    ViewBag.Title = "All Users";
+}
+
+<h1>All Users</h1>
+@if (Model.Any())
+{
+    <a class="btn btn-primary mb-3" style="width:auto"  href="../Identity/Account/Register">
+        Add new user
+    </a>
+    foreach (var user in Model)
+    {
+        <div class="card mb-3">
+            <div class="card-header">
+              User Id : @user.Id
+
+            </div>
+            <div class="card-body">
+                <h4 class="card-title">
+             
+                   @user.UserName
+                </h4>
+             
+            </div>
+            
+            <div class="card-footer">
+
+                <form asp-action="DeleteUser" method="post" asp-route-Id="@user.Id">
+                    <a class="btn btn-primary" asp-controller="admin" asp-action="EditUser" asp-route-Id="@user.Id">Edit</a>
+                   <button type="submit" class="btn btn-danger" onclick=" return confirm('Are you sure you want to delete user : @user.UserName')"> Delete</button>
+                </form>
+
+               
+
+            </div>
+        </div>
+    }
+
+}
+else
+{
+    <div class="card">
+        <div class="card-header">
+            No Users created yet
+
+        </div>
+        <div class="card-body">
+            <h4 class="card-title">
+                Use the button below to create a user
+            </h4>>
+            <a class="btn btn-primary" href="../Areas/Identity/Pages/Account/RegisterConfirmation.cshtml" style="width:auto" >
+                Add new user
+            </a>
+        </div>
+    </div>
+}

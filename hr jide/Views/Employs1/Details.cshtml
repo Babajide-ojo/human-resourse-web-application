@@ -1,0 +1,36 @@
+﻿@model hr_jide.Models.Employ
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var photopath = "~/images/" + Model.Photograph;
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Employ</h4>
+    <hr />
+    <div class="row-justify-content-center m-3">
+        <div class="col-sm-8">
+            <div class="card" style="width: 18rem;">
+                <div class="card-header">
+                    <h1>@Model.FirstName</h1>
+                </div>
+
+                <div class="card-body">
+                    <img src="@photopath" class="card-img-top rounded-circle" alt="..." asp-append-version="true">
+                    <h4>Employee ID : @Model.EmployeeId</h4>
+
+                </div>
+
+                <div class="card-footer text-center">
+                    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+                    <a asp-action="Index">Back to List</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
